@@ -1,0 +1,28 @@
+body
+{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+#photoForm{
+    background-color: #f0ead6;
+}
+.form-group
+{
+    text-align: center;
+    margin-top: 15px;
+}
+#name,#surname,#date,#email,#socials{
+    width: 500px;
+}
+.btn-group{
+    display: flex;
+    width: 100%;
+}
+.btn
+{
+    justify-content: space-between;
+    width: 20vw;
+    margin-top: 30px;
+}
+

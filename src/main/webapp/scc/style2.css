@@ -1,0 +1,12 @@
+body{
+    display: flex;
+    justify-content: center;
+}
+.container{
+    margin: 100px 20px;
+    display: block;
+}
+.button_cantainer{
+    display: flex;
+    justify-content: center;
+}

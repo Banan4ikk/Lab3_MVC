@@ -16,6 +16,11 @@ public class User {
         Email = email;
         Socials = socials;
     }
+
+    public User() {
+
+    }
+
     public String getName() {
         return Name;
     }

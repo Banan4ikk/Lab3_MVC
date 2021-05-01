@@ -34,13 +34,21 @@ public class UserDAO {
 
         for (String list : lists) {
             String[] elements = list.split(" ");
-            users.add(new User(
-                    elements[0],
-                    elements[1],
-                    elements[2],
-                    elements[3],
-                    elements[4])
-            );
+            User user = new User();
+            user.setName(elements[0]);
+            user.setSurname(elements[1]);
+            user.setDate(elements[2]);
+            user.setEmail(elements[3]);
+            user.setSocials(elements[4]);
+
+            users.add(user);
+//            users.add(new User(
+//                    elements[0],
+//                    elements[1],
+//                    elements[2],
+//                    elements[3],
+//                    elements[4])
+//            );
         }
 
         return gson.toJson(users);

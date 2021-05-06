@@ -13,5 +13,6 @@ $(function (){
 
         $.post("add",jsonString);
         alert("Send to server successfully.");
+        console.log(jsonString);
     });
 });

@@ -7,12 +7,12 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-public class UserDAO {
-    public static final UserDAO instance = new UserDAO();
+public class OldUserDAO {
+    public static final OldUserDAO instance = new OldUserDAO();
     public static final String FILE_PATH = "C:/Users/Konstantin/IdeaProjects/Lab3_MVC/src/main/java/UserInfo.txt";
     Gson gson = new Gson();
 
-    public static UserDAO GetInstance(){
+    public static OldUserDAO GetInstance(){
         return instance;
     }
 

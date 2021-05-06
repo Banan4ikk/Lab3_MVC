@@ -13,9 +13,9 @@ public class ListServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        UserDAO userDAO = UserDAO.GetInstance();
+        OldUserDAO oldUserDAO = OldUserDAO.GetInstance();
 
-        String DataToSend = userDAO.GetJsonString();
+        String DataToSend = oldUserDAO.GetJsonString();
 
         resp.getWriter().print(DataToSend);
 

@@ -18,8 +18,8 @@ public class HelloServlet extends HttpServlet {
         resp.setContentType("application/json");
         String UserData = new BufferedReader(new InputStreamReader(req.getInputStream())).lines().collect(Collectors.joining());
 
-        UserDAO userDAO = UserDAO.GetInstance();
+        OldUserDAO oldUserDAO = OldUserDAO.GetInstance();
 
-        userDAO.addUser(UserData);
+        oldUserDAO.addUser(UserData);
     }
 }

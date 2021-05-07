@@ -1,4 +1,4 @@
-package com.example.MVCLab3;
+package com.example.MVCLab3.Model;
 
 import java.util.Objects;
 

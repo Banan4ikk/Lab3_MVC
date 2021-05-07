@@ -1,5 +1,6 @@
-package com.example.MVCLab3;
+package com.example.MVCLab3.DBPackage;
 
+import com.example.MVCLab3.Model.User;
 import com.google.gson.Gson;
 
 import java.sql.PreparedStatement;
@@ -11,10 +12,12 @@ public class TestSQLClass {
     static Gson gson = new Gson();
     static DBWorker dbWorker = new DBWorker();
 
-    private static User ReadUser(int id) throws SQLException {
-        String query = "select * from users where id=?";
+    private static User ReadUser(String name, String surname) throws SQLException {
+        String query = "select * from users where name =? and surname = ?";
         PreparedStatement statement = dbWorker.getConnection().prepareStatement(query);
-        statement.setInt(1,id);
+        statement.setString(1,name);
+        statement.setString(2,surname);
+
         ResultSet resultSet = statement.executeQuery();
         User newUser = new User();
         while (resultSet.next()){
@@ -28,14 +31,15 @@ public class TestSQLClass {
         return newUser;
     }
 
-    private static void UpdateUser(int id,String data) throws SQLException {
-        String query = "update users set name=?,surname=?,date=?,socials=?,email=? where id=?";
+    private static void UpdateUser(String name,String surname,String JsonData) throws SQLException {
+        String query = "update users set name=?,surname=?,date=?,socials=?,email=? where name =? and surname = ?";
         PreparedStatement statement = dbWorker.getConnection().prepareStatement(query);
 
-        statement.setInt(6,id);
+        statement.setString(6,name);
+        statement.setString(7,surname);
 
-        User userToUpdate = ReadUser(id);
-        User updatedUser = gson.fromJson(data,User.class);
+        User userToUpdate = ReadUser(name, surname);
+        User updatedUser = gson.fromJson(JsonData,User.class);
 
 
         userToUpdate.setName(updatedUser.getName());
@@ -52,11 +56,21 @@ public class TestSQLClass {
 
         statement.executeUpdate();
     }
+    private static void DeleteUser(String name,String surname) throws SQLException {
+        String query = "delete from users where name =? and surname =?";
+        PreparedStatement statement = dbWorker.getConnection().prepareStatement(query);
+        statement.setString(1,name);
+        statement.setString(2,surname);
+
+        statement.executeUpdate();
+    }
 
     public static void main(String[] args) throws SQLException {
         String json = "{\"Name\":\"Ivan\",\"Surname\":\"Minaleev\",\"Date\":\"12.12.2021\",\"Socials\":\"vk.com/exmaple\",\"Email\":\"mail@mail.ru\"}";
 
-        UpdateUser(3,json);
+        DeleteUser("Ivan","Minaleev");
+
+        //System.out.println(user.toString());
 
     }
 }

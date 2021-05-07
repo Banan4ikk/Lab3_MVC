@@ -1,4 +1,4 @@
-package com.example.MVCLab3;
+package com.example.MVCLab3.DBPackage;
 
 import java.sql.Connection;
 import java.sql.DriverManager;

@@ -85,17 +85,26 @@ public class UserDAO {
 
         User userToUpdate = ReadUser(name, surname);
 
-        userToUpdate.setName(updatedUser.getName());
-        userToUpdate.setSurname(updatedUser.getSurname());
-        userToUpdate.setDate(updatedUser.getDate());
-        userToUpdate.setSocials(updatedUser.getSocials());
-        userToUpdate.setEmail(updatedUser.getEmail());
+        if(!updatedUser.getName().equals(""))
+            userToUpdate.setName(updatedUser.getName());
 
-        statement.setString(1,updatedUser.getName());
-        statement.setString(2,updatedUser.getSurname());
-        statement.setString(3,updatedUser.getDate());
-        statement.setString(4,updatedUser.getSocials());
-        statement.setString(5,updatedUser.getEmail());
+        if(!updatedUser.getSurname().equals(""))
+            userToUpdate.setSurname(updatedUser.getSurname());
+
+        if(!updatedUser.getDate().equals(""))
+            userToUpdate.setDate(updatedUser.getDate());
+
+        if(!updatedUser.getSocials().equals(""))
+            userToUpdate.setSocials(updatedUser.getSocials());
+
+        if(!updatedUser.getEmail().equals(""))
+            userToUpdate.setEmail(updatedUser.getEmail());
+
+        statement.setString(1,userToUpdate.getName());
+        statement.setString(2,userToUpdate.getSurname());
+        statement.setString(3,userToUpdate.getDate());
+        statement.setString(4,userToUpdate.getSocials());
+        statement.setString(5,userToUpdate.getEmail());
 
         statement.executeUpdate();
     }

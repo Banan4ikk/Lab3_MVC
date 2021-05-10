@@ -31,7 +31,7 @@ public class TestSQLClass {
         return newUser;
     }
 
-    private static void UpdateUser(String name,String surname,String JsonData) throws SQLException {
+    private static void UpdateUser(User updatedUser,String name,String surname) throws SQLException {
         String query = "update users set name=?,surname=?,date=?,socials=?,email=? where name =? and surname = ?";
         PreparedStatement statement = dbWorker.getConnection().prepareStatement(query);
 
@@ -39,24 +39,31 @@ public class TestSQLClass {
         statement.setString(7,surname);
 
         User userToUpdate = ReadUser(name, surname);
-        User updatedUser = gson.fromJson(JsonData,User.class);
 
-
+        if(!updatedUser.getName().equals(""))
         userToUpdate.setName(updatedUser.getName());
+
+        if(!updatedUser.getSurname().equals(""))
         userToUpdate.setSurname(updatedUser.getSurname());
+
+        if(!updatedUser.getDate().equals(""))
         userToUpdate.setDate(updatedUser.getDate());
+
+        if(!updatedUser.getSocials().equals(""))
         userToUpdate.setSocials(updatedUser.getSocials());
+
+        if(!updatedUser.getEmail().equals(""))
         userToUpdate.setEmail(updatedUser.getEmail());
 
-        statement.setString(1,updatedUser.getName());
-        statement.setString(2,updatedUser.getSurname());
-        statement.setString(3,updatedUser.getDate());
-        statement.setString(4,updatedUser.getSocials());
-        statement.setString(5,updatedUser.getEmail());
+        statement.setString(1,userToUpdate.getName());
+        statement.setString(2,userToUpdate.getSurname());
+        statement.setString(3,userToUpdate.getDate());
+        statement.setString(4,userToUpdate.getSocials());
+        statement.setString(5,userToUpdate.getEmail());
 
         statement.executeUpdate();
     }
-    private static void DeleteUser(String name,String surname) throws SQLException {
+    private  void DeleteUser(String name,String surname) throws SQLException {
         String query = "delete from users where name =? and surname =?";
         PreparedStatement statement = dbWorker.getConnection().prepareStatement(query);
         statement.setString(1,name);
@@ -65,12 +72,26 @@ public class TestSQLClass {
         statement.executeUpdate();
     }
 
+    public  void CreateUser(String jsonString) throws SQLException {
+        String query = "insert into users values(?,?,?,?,?,?)";
+
+        PreparedStatement statement = dbWorker.getConnection().prepareStatement(query);
+
+        User newUser = gson.fromJson(jsonString,User.class);
+
+        statement.setString(1, null);
+        statement.setString(2, newUser.getName());
+        statement.setString(3, newUser.getSurname());
+        statement.setString(4, newUser.getDate());
+        statement.setString(5, newUser.getEmail());
+        statement.setString(6, newUser.getSocials());
+        statement.execute();
+    }
     public static void main(String[] args) throws SQLException {
-        String json = "{\"Name\":\"Ivan\",\"Surname\":\"Minaleev\",\"Date\":\"12.12.2021\",\"Socials\":\"vk.com/exmaple\",\"Email\":\"mail@mail.ru\"}";
+        String json = "{\"Name\":\"Ivan\",\"Surname\":\"\",\"Date\":\"12.12.2021\",\"Socials\":\"vk.com/exmaple\",\"Email\":\"mail@mail.ru\"}";
 
-        DeleteUser("Ivan","Minaleev");
-
-        //System.out.println(user.toString());
-
+        Gson gson = new Gson();
+        User newuser = gson.fromJson(json,User.class);
+        UpdateUser(newuser,"Ivana","Minaleeva");
     }
 }

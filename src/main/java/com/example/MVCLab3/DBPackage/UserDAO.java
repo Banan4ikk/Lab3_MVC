@@ -57,7 +57,7 @@ public class UserDAO {
         return gson.toJson(AllUsersList);
     }
 
-    private User ReadUser(String name, String surname) throws SQLException {
+    public User ReadUser(String name, String surname) throws SQLException {
         String query = "select * from users where name =? and surname = ?";
         PreparedStatement statement = dbWorker.getConnection().prepareStatement(query);
         statement.setString(1,name);
@@ -76,7 +76,7 @@ public class UserDAO {
         return newUser;
     }
 
-    private void UpdateUser(String name,String surname,String JsonData) throws SQLException {
+    public void UpdateUser(User updatedUser,String name,String surname) throws SQLException {
         String query = "update users set name=?,surname=?,date=?,socials=?,email=? where name =? and surname = ?";
         PreparedStatement statement = dbWorker.getConnection().prepareStatement(query);
 
@@ -84,8 +84,6 @@ public class UserDAO {
         statement.setString(7,surname);
 
         User userToUpdate = ReadUser(name, surname);
-        User updatedUser = gson.fromJson(JsonData,User.class);
-
 
         userToUpdate.setName(updatedUser.getName());
         userToUpdate.setSurname(updatedUser.getSurname());
@@ -101,7 +99,7 @@ public class UserDAO {
 
         statement.executeUpdate();
     }
-    private void DeleteUser(String name,String surname) throws SQLException {
+    public void DeleteUser(String name,String surname) throws SQLException {
         String query = "delete from users where name =? and surname =?";
         PreparedStatement statement = dbWorker.getConnection().prepareStatement(query);
         statement.setString(1,name);

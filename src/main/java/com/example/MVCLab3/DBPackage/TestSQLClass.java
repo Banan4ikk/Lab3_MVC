@@ -21,7 +21,6 @@ public class TestSQLClass {
         ResultSet resultSet = statement.executeQuery();
         User newUser = new User();
         while (resultSet.next()){
-            newUser.setId(resultSet.getInt("id"));
             newUser.setName(resultSet.getString("name"));
             newUser.setSurname(resultSet.getString("surname"));
             newUser.setDate(resultSet.getString("date"));

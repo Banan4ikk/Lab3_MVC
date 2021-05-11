@@ -3,7 +3,6 @@ package com.example.MVCLab3.Servlets;
 import com.example.MVCLab3.DBPackage.UserDAO;
 import com.example.MVCLab3.Model.User;
 import com.google.gson.Gson;
-import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
@@ -18,15 +17,15 @@ import java.util.stream.Collectors;
 @WebServlet( value = "/update")
 public class UpdateServlet extends HttpServlet {
     @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         Gson gson = new Gson();
         UserDAO userDAO = UserDAO.GetInstance();
 
-        String name = req.getParameter("UserName");
-        String surname = req.getParameter("UserSurname");
         String UserData = new BufferedReader(new InputStreamReader(req.getInputStream())).lines().collect(Collectors.joining());
 
         User newUser = gson.fromJson(UserData,User.class);
+        String name = (String) req.getAttribute("Name");
+        String surname = (String) req.getAttribute("Surname");
 
         try {
             userDAO.UpdateUser(newUser,name,surname);

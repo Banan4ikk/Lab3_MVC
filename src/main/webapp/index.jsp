@@ -40,8 +40,11 @@
         <input type="submit" class="btn btn-primary" value="Отправить"/>
         <input type="button" class="btn btn-primary" onclick="document.location.href = 'List.jsp'" value="Получить"/>
     </div>
-
 </form>
+    <div class="btn-group">
+        <input type="submit" class="btn btn-primary" onclick="document.location.href = 'Update.jsp'" value="Изменить"/>
+        <input type="button" class="btn btn-primary" onclick="document.location.href = 'Delete.jsp'" value="Удалить"/>
+    </div>
 </div>
 
 </body>

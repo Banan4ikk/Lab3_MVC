@@ -1,7 +1,7 @@
 let OutputArray = [];
 $(function (){
     $("#GetInfoButton").on('click',function (){
-        $.post("list", function (data) {
+        $.post("read", function (data) {
             OutputArray = JSON.parse(data);
             showOutputArray(OutputArray);
         });

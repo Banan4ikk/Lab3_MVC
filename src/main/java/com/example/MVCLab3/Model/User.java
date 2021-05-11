@@ -3,15 +3,13 @@ package com.example.MVCLab3.Model;
 import java.util.Objects;
 
 public class User {
-    private int Id;
     private String Name;
     private String Surname;
     private String Date;
     private String Email;
     private String Socials;
 
-    public User(int id, String name, String surname, String date, String email, String socials) {
-        Id = id;
+    public User(String name, String surname, String date, String email, String socials) {
         Name = name;
         Surname = surname;
         Date = date;
@@ -19,18 +17,10 @@ public class User {
         Socials = socials;
     }
 
-
-
     public User() {
 
     }
-    public int getId() {
-        return Id;
-    }
 
-    public void setId(int id) {
-        Id = id;
-    }
     public String getName() {
         return Name;
     }
@@ -73,7 +63,13 @@ public class User {
 
     @Override
     public String toString() {
-        return Name + " " + Surname + " "+ Date + " "+ Email + " "+ Socials +"\n";
+        return "User{" +
+                "Name='" + Name + '\'' +
+                ", Surname='" + Surname + '\'' +
+                ", Date='" + Date + '\'' +
+                ", Email='" + Email + '\'' +
+                ", Socials='" + Socials + '\'' +
+                '}';
     }
 
     @Override

@@ -72,6 +72,18 @@ public class User {
                 '}';
     }
 
+    public static User ConvertToUser(UserToUpdateModel userToUpdate){
+        User newUser = new User();
+
+        newUser.setName(userToUpdate.getName());
+        newUser.setSurname(userToUpdate.getSurname());
+        newUser.setDate(userToUpdate.getDate());
+        newUser.setEmail(userToUpdate.getSocials());
+        newUser.setSocials(userToUpdate.getSocials());
+
+        return newUser;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

@@ -2,6 +2,7 @@ package com.example.MVCLab3.Servlets;
 
 import com.example.MVCLab3.DBPackage.UserDAO;
 import com.example.MVCLab3.Model.User;
+import com.example.MVCLab3.Model.UserToUpdateModel;
 import com.google.gson.Gson;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -23,12 +24,15 @@ public class UpdateServlet extends HttpServlet {
 
         String UserData = new BufferedReader(new InputStreamReader(req.getInputStream())).lines().collect(Collectors.joining());
 
-        User newUser = gson.fromJson(UserData,User.class);
-        String name = (String) req.getAttribute("Name");
-        String surname = (String) req.getAttribute("Surname");
+        UserToUpdateModel newUser = gson.fromJson(UserData,UserToUpdateModel.class);
+
+        User userToUpdate = User.ConvertToUser(newUser);
+
+        String name = newUser.getNameToUpdate();
+        String surname = newUser.getSurnameToUpdate();
 
         try {
-            userDAO.UpdateUser(newUser,name,surname);
+            userDAO.UpdateUser(userToUpdate,name,surname);
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }

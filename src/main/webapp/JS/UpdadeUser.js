@@ -3,6 +3,8 @@ $(function (){
     $("#updateForm").submit(function (e){
         e.preventDefault();
 
+        Params.NameToUpdate = $("#nameUpdate").val();
+        Params.SurnameToUpdate = $("#surnameUpdate").val();
         Params.Name = $("#name").val();
         Params.Surname = $("#surname").val();
         Params.Date = $("#date").val();
@@ -11,6 +13,6 @@ $(function (){
 
         let NewUserInfo = JSON.stringify(Params);
 
-        $.post("Name",NewUserInfo)
+        $.post("update",NewUserInfo)
     });
 });

@@ -20,12 +20,12 @@
     <label>Input name and surname of user you would like to change</label>
     <div class="form-group">
         <label>Name
-            <input type="text" class="form-control" name="UserName" placeholder="Ivan" >
+            <input type="text" class="form-control" id="nameUpdate" name="UserName" placeholder="Ivan" >
         </label>
     </div>
     <div class="form-group">
         <label>Surname
-            <input type="text" class="form-control" name="UserSurname" value="" placeholder="Mingaleev">
+            <input type="text" class="form-control" id="surnameUpdate" name="UserSurname" value="" placeholder="Mingaleev">
         </label>
     </div>
     <label>Input new data of user</label>

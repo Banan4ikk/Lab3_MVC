@@ -1,6 +1,6 @@
 function showOutputArray(OutputArray) {
     let ParamsToOut = {};
-    $("#header").append("<th>id</th> <th>Email</th> <th>Socials</th> <th>Name</th> <th>Dates</th> <th>Surname</th>");
+    $("#header").append("<th>Email</th> <th>Socials</th> <th>Name</th> <th>Dates</th> <th>Surname</th>");
     for (let i = 0; i < OutputArray.length; i++) {
         ParamsToOut = OutputArray[i];
 

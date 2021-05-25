@@ -11,7 +11,6 @@ $(function (){
 
         let jsonString = JSON.stringify(Params);
 
-        $.post("add",jsonString);
-        alert("Send to server successfully.");
+        $.post("create",jsonString);
     });
 });

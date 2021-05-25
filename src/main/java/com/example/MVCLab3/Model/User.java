@@ -1,4 +1,4 @@
-package com.example.MVCLab3;
+package com.example.MVCLab3.Model;
 
 import java.util.Objects;
 
@@ -63,7 +63,25 @@ public class User {
 
     @Override
     public String toString() {
-        return Name + " " + Surname + " "+ Date + " "+ Email + " "+ Socials +"\n";
+        return "User{" +
+                "Name='" + Name + '\'' +
+                ", Surname='" + Surname + '\'' +
+                ", Date='" + Date + '\'' +
+                ", Email='" + Email + '\'' +
+                ", Socials='" + Socials + '\'' +
+                '}';
+    }
+
+    public static User ConvertToUser(UserToUpdateModel userToUpdate){
+        User newUser = new User();
+
+        newUser.setName(userToUpdate.getName());
+        newUser.setSurname(userToUpdate.getSurname());
+        newUser.setDate(userToUpdate.getDate());
+        newUser.setEmail(userToUpdate.getSocials());
+        newUser.setSocials(userToUpdate.getSocials());
+
+        return newUser;
     }
 
     @Override
